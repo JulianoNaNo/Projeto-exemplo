@@ -1,0 +1,79 @@
+/* Fundo padrão do projeto (geralmente usado na tela de Login e Registro) */
+body {
+    background: linear-gradient(135deg, #1e1e2f 0%, #11111d 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}
+
+/* Limita o tamanho máximo do card focado no Login */
+.login-container {
+    max-width: 400px;
+}
+
+.login-container h1 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
+/* Link de recuperar senha alinhado à direita */
+.recover-password-link {
+    background: none;
+    border: none;
+    color: #a29bfe;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-align: right;
+    margin-top: -0.75rem;
+    margin-bottom: 1.5rem;
+    align-self: flex-end;
+    transition: color 0.2s;
+}
+
+.recover-password-link:hover:not(:disabled) {
+    color: #6c5ce7;
+    text-decoration: underline;
+}
+
+.recover-password-link:disabled {
+    color: #4a4a6a;
+    cursor: not-allowed;
+    text-decoration: none;
+}
+
+/* Botão secundário de "Registrar" abaixo do botão Entrar */
+.btn-secondary {
+    width: 100%;
+    padding: 0.85rem;
+    border: 1px solid #6c5ce7;
+    border-radius: 6px;
+    background: transparent;
+    color: #6c5ce7;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-secondary:hover {
+    background-color: #6c5ce7;
+    color: white;
+}
+
+.loading {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+.loading label {
+    font-size: 24px;
+    color: white;
+}

@@ -1,0 +1,157 @@
+
+/*.error {
+    background: rgb(53, 53, 53);
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+    text-shadow: 2px 2px 1px black;
+    display: none;
+}
+button {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    width: -webkit-fill-available;
+}
+
+button:active {
+    opacity: 0.7;
+}
+button[disabled] {
+    opacity: 0.8;
+}
+
+.clearButton {
+    background: transparent;
+    border-radius: 2px;
+    border-color: transparent;
+    color: rgb(255, 255, 255);
+}
+
+.clearButton:active {
+    opacity: 0.7;
+    border-color: rgb(0, 0, 0);
+}
+
+.clearButton[disabled] {
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.outline {
+    background: aliceblue;
+    color: rgb(0, 0, 0);
+    border: 2px solid black;
+    border-color: transparent;
+}
+
+.outline:active {
+    opacity: 0.7;
+    border-color: rgb(60, 84, 218);
+}
+
+.outline[disabled] {
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.solid {
+    background-color: black;
+    color: rgb(255, 255, 255);
+    border: 2px solid black;
+    border-color: transparent;
+}
+
+.solid:active {
+    opacity: 0.7;
+    border-color: rgb(60, 84, 218);
+}
+*/
+/* Reset padrão para garantir que o layout fique igual em qualquer navegador */
+
+/* Reset padrão para garantir que o layout fique igual em qualquer navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* Estrutura base do Card que envolve os formulários */
+.form-card {
+    background-color: #26263b;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    width: 100%;
+}
+
+/* Estilo padrão para os grupos de input (Label + Campo + Erro) */
+.form-group {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: #b3b3ca;
+}
+
+.form-group input {
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #3f3f5f;
+    background-color: #1f1f33;
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #6c5ce7;
+}
+
+/* As famosas mensagens de erro que controlamos no JS com "block" e "none" */
+.error-message {
+    color: #ff4757;
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
+    display: none; /* Escondido por padrão, o JS ativa */
+}
+
+/* Botão padrão do sistema */
+.btn-primary {
+    width: 100%;
+    padding: 0.85rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #6c5ce7;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: #5b4bc4;
+}
+
+/* Estado do botão bloqueado pelo JavaScript */
+.btn-primary:disabled {
+    background-color: #3f3f5f;
+    color: #7a7a9a;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.error {
+    color: #ff4757;
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
+    display: none; /* 👈 Este é o "segredo" aqui! */
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://www.gstatic.com https://*.googleapis.com; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://*.googleapis.com; connect-src 'self' http://127.0.0.1:5500 https://www.gstatic.com https://firebase.googleapis.com https://identitytoolkit.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
+        <title>Tela de login</title>
+        <link rel="stylesheet" href="login.css">
+        <link rel="stylesheet" href="global.css">
+        <script src="https://www.gstatic.com/firebasejs/12.13.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/12.13.0/firebase-auth-compat.js"></script>
+        <script src="firebaseInit.js"></script>
+        <script src="loading.js"></script>
+        <script src="validations.js"></script>
+        <script src="Index.js"></script>
+    </head>
+    <body>
+        <form class="login-container">
+            <h1>Tela de login</h1>
+            <div class="inputField" id="centralize">
+                <div id="email-field"f>
+                    <label class="form-field">Email</label><br>
+                    <input type="email" name="email" id="email" placeholder="Seu@email.com" onchange="onChangeEmail()"/>
+                    <span class="error" id="email-required-error">Email é obrigatório</span>
+                    <span class="error" id="email-invalid-error">Email incorreto</span>
+                </div>
+                <div id="password-field">
+                    <label class="form-field">Senha</label><br>
+                    <input type="password" name="Senha" id="password" placeholder="Senha" onchange="onChangePassword()"/>
+                    <span class="error" id="password-required-error">Senha é obrigatório</span>
+                </div>
+            </div>
+            <div id="LoginActions">
+                <button type="button" disabled="true" class="recover-password-link" id="password-button-recover" onclick="recoverPasswordt()">Recuperar senha</button>
+                <button type="button" disabled="true" class="btn-primary" onclick="login()" id="login-button">Entrar</button>
+                <button type="button" class="btn-secondary" onclick="register()">Registrar</button>
+            </div>
+        </form>
+    </body>
+</html>

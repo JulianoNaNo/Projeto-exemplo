@@ -1,0 +1,43 @@
+/* Fundo padrão do projeto (geralmente usado na tela de Login e Registro) */
+body {
+    background: linear-gradient(135deg, #1e1e2f 0%, #11111d 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}
+
+/* O card de registro fica um pouco mais largo para dar respiro aos múltiplos campos */
+.register-container {
+    max-width: 460px;
+}
+
+.register-container h1 {
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.register-container p {
+    text-align: center;
+    color: #b3b3ca;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+/* Link ou botão de voltar para a tela de login se o usuário desistir */
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #a29bfe;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: #6c5ce7;
+    text-decoration: underline;
+}

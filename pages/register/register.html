@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Registrar</title>
+        <link rel="stylesheet" href="../../global.css">
+        <link rel="stylesheet" href="register.css">
+        <script src="../../validations.js"></script>
+        <script src="../../loading.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/12.13.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/12.13.0/firebase-auth-compat.js"></script>
+        <script src="../../firebaseInit.js"></script>
+        <script src="register.js"></script>
+    </head>
+    <body>
+        <form>
+            <label>Seu email</label><br>
+            <input type="email" placeholder="Seu email" id="email" oninput="onChangeEmail()"/><br>
+            <span class="error" id="email-required-error">Email é obrigatório</span>
+            <span class="error" id="email-invalid-error">Email incorreto</span>
+            <label>Nova senha</label><br>
+            <input type="password" placeholder="Senha" id="password" oninput="onChangePassword()"/><br>
+            <span class="error" id="password-required-error">Senha é obrigatório</span>
+            <span class="error" id="password-min-length-error">Senha deve ter pelo menos 6 caracteres.</span>
+            <label>Confirmar senha</label><br>
+            <input type="password" placeholder="Confirmar senha" id="confirm-password" oninput="onChangeConfirmPassword()"/><br>
+            <span class="error" id="password-doesnt-match-error">Senha e confirmar senha devem ser iguais.</span>
+            <div> 
+                <button type="button" class="solid" disabled="true" id="register-button" onclick="handleRegister()">Registrar</button>
+                <button type="button" class="clear">Login</button>
+            </div>
+        </form>
+    </body>
+</html>
