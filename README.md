@@ -1,0 +1,2 @@
+Esse projeto é basicamente material de estudo dos videos feitos pelo Paulo Alves Dev: https://www.youtube.com/@pauloalvesdev4397
+como esse é meu primeiro projeto, nada que esta sendo feito aqui devera ser levado a serio, apos a conclusao desse curso, nada desse projeto sera refatorado, tudo que aprendi aqui sera utilizado em outro projeto.

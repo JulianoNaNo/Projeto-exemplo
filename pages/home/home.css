@@ -28,3 +28,33 @@ header {
 .btn-logout:hover {
     background-color: #5b4bc4; /* Efeito de hover básico que faltava */
 }
+
+ol{
+    color: black;
+    list-style-type: none;
+    padding: 0;
+}
+
+ol li{
+    cursor: pointer;
+    background-color: white;
+    padding: 8px 16px;
+    border-bottom: 1px solid gray;
+}
+
+ol li.expense{
+    border-left: 10px solid red;
+}
+
+ol li.income{
+    border-left: 10px solid green;
+}
+
+ol li:hover{
+    background-color: #f0f0f0;
+}
+
+
+p{
+    margin: 4px 0;
+}

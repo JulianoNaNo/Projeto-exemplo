@@ -149,6 +149,30 @@ button[disabled] {
     opacity: 0.6;
 }
 
+button.fab{
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: none;
+    font-size: 24px;
+    display: grid;
+    place-items: center;
+    padding-bottom: 4px;
+}
+
+.fab.fixed{
+    position: fixed;
+}
+
+.fab.bottom{
+    bottom: 20px;
+}
+
+.fab.bottom.right{
+    bottom: 20px;
+    right: 20px;
+}
+
 .error {
     color: #ff4757;
     font-size: 0.8rem;
