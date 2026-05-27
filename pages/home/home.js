@@ -8,27 +8,40 @@ function logout() {
     });
 }
 
-findTransactions()
 
-function findTransactions() {
+firebase.auth().onAuthStateChanged(user => {
+    showLoading();
+    if(user) {
+        hideLoading();
+        findTransactions(user);
+    }
+    hideLoading();
+});
+
+
+
+function findTransactions(user) {
+    showLoading();
+
     firebase.firestore()
     .collection("Transactions")
+    .where("user.uid", '==', user.uid)
+    .orderBy("date", "desc")
     .get()
     .then(snapshot => {
         const transactions = snapshot.docs.map(doc => doc.data());
         addTransactionToScreen(transactions);
+        hideLoading();
     })
     .catch(error => {
-        // 🔴 Se der erro de permissão ou conexão, você verá o motivo real aqui:
         console.error("Erro ao buscar transações no Firebase:", error);
-        console.log(transactions);
-        
-        // Opcional: Avisar o usuário na tela de forma amigável
-        alert("Não foi possível carregar as transações. Tente novamente mais tarde.");
+        alert("Não foi possível carregar as transações.");
+        hideLoading(); // Fecha direto em caso de erro
     });
 }
 
 function addTransactionToScreen(transactions) {
+    showLoading();
     const orderedList = document.getElementById("transactions");
     transactions.forEach(transaction => {
         const li = document.createElement(`li`);
@@ -54,6 +67,7 @@ function addTransactionToScreen(transactions) {
             li.appendChild(description);
         }
     });
+    hideLoading();
 }
 
 function formatDate(date) {
