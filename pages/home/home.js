@@ -11,10 +11,21 @@ function logout() {
 findTransactions()
 
 function findTransactions() {
-    setTimeout(() => {
-        addTransactionToScreen(fakeTransaction);
-        }, 1000
-    );
+    firebase.firestore()
+    .collection("Transactions")
+    .get()
+    .then(snapshot => {
+        const transactions = snapshot.docs.map(doc => doc.data());
+        addTransactionToScreen(transactions);
+    })
+    .catch(error => {
+        // 🔴 Se der erro de permissão ou conexão, você verá o motivo real aqui:
+        console.error("Erro ao buscar transações no Firebase:", error);
+        console.log(transactions);
+        
+        // Opcional: Avisar o usuário na tela de forma amigável
+        alert("Não foi possível carregar as transações. Tente novamente mais tarde.");
+    });
 }
 
 function addTransactionToScreen(transactions) {
@@ -24,13 +35,13 @@ function addTransactionToScreen(transactions) {
         li.classList.add(transaction.type);
         orderedList.appendChild(li);
 
-
         const date = document.createElement(`p`);
         date.innerHTML = formatDate(transaction.date);
         li.appendChild(date);
 
         const money = document.createElement(`p`);
         money.innerHTML = formatMoney(transaction.money);
+        console.log("dentro de transaction money: ", transaction.money);
         li.appendChild(money);
 
         const type = document.createElement(`p`);
@@ -46,78 +57,9 @@ function addTransactionToScreen(transactions) {
 }
 
 function formatDate(date) {
-    return new Date(date).toLocaleDateString("pt-BR")
+    return new Date(date).toLocaleDateString("pt-BR");
 }
 
 function formatMoney(money) {
-    return `${money.currency} ${money.value.toFixed(2)}`
+    return `${money.currency} ${money.value.toFixed(2)}`;
 }
-
-const fakeTransaction = [{
-    type: "expense",
-    date: "2024-06-01",
-    money:{
-        currency: "R$",
-        value: 100.00
-    },
-    transactionType: "Supermercado",
-},
-{
-    type: "income",
-    date: "2024-06-03",
-    money:{
-        currency: "R$",
-        value: 5000.00
-    },
-    transactionType: "Salário",
-    description: "Salário do mês de junho da empresa A",
-},
-{
-    type: "income",
-    date: "2026-05-01",
-    money: {
-        "currency": "R$",
-        "value": 6500.00
-    },
-    transactionType: "Salário",
-    description: "Salário mensal - Empresa Tech"
-},
-{
-    type: "expense",
-    date: "2026-05-05",
-    money: {
-        "currency": "USD",
-        "value": 1200.00
-    },
-    transactionType: "Moradia",
-    description: "Pagamento do aluguel do apartamento"
-},
-{
-    type: "expense",
-    date: "2026-05-10",
-    money: {
-        "currency": "R$",
-        "value": 350.50
-    },
-    transactionType: "Alimentação",
-    description: "Compras do mês no supermercado"
-},
-{
-    type: "income",
-    date: "2026-05-15",
-    money: {
-        "currency": "EUR",
-        "value": 450.00
-    },
-    transactionType: "Freelance",
-},
-{
-    type: "expense",
-    date: "2026-05-20",
-    money: {
-        "currency": "BRL",
-        "value": 120.00
-    },
-    transactionType: "Transporte",
-}
-]
