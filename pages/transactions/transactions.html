@@ -13,8 +13,9 @@
     <script src="https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore-compat.js"></script>
     <script src="../../../firebaseInit.js"></script>
     <script src="../../../auth-guard.js"></script>
-    <script src="transactions.js"></script>
     <script src="../../loading.js"></script>
+    <script src="transactions.js" defer></script>
+    
 </head>
 <body>
     <header>
@@ -54,13 +55,14 @@
                 <select onchange="onChangeTransactionType()" id="transaction-type">
                     <option value="" >--Selecione um tipo de transação--</option>
                     <option >Aluguel</option>
-                    <option >Alimentacao</option>
+                    <option >Alimentação</option>
                     <option >Supermercado</option>
                     <option >Transporte</option>
                     <option >Play5</option>
                     <option >Shopee</option>
-                    <option >Salario</option>
-                    <option >Free Lance</option>
+                    <option >Salário</option>
+                    <option >Free lancer</option>
+                    <option >Assinaturas</option>
                     <option >Outros</option>
                 </select>
             </div>
@@ -73,4 +75,5 @@
         </form>
     </main>
 </body>
+
 </html>

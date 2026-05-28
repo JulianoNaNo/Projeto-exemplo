@@ -1,7 +1,68 @@
+if(!isNewTransaction()) {
+    const uid = getTransactionUid();
+    findTransactionByUid(uid);
+}
+
+function getTransactionUid() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get("uid");
+}
+
+
+function isNewTransaction() {
+    return !getTransactionUid();
+}
+
+function findTransactionByUid(uid) {
+    showLoading();
+    firebase.firestore()
+    .collection("Transactions")
+    .doc(uid)
+    .get()
+    .then((doc) => {
+        hideLoading();
+        if (doc.exists) {
+            fillTransactionScreen(doc.data());
+            toggleSaveButtonDisabled();
+        } else {
+            alert("Transação não encontrada.");
+            window.location.href = "/pages/home/home.html";
+        }
+    })
+    .catch((error) => {
+        hideLoading();
+        alert("Erro ao buscar transação: " + error.message);
+    });
+}
+
+function fillTransactionScreen(transaction) {
+    if(transaction.type === "expense") {
+        form.typeExpense().checked = true;
+    }else {
+        form.typeIncome().checked = true;
+    }
+
+    form.date().value = transaction.date;
+    form.currency().value = transaction.money.currency;
+    form.value().value = transaction.money.value;
+    form.transactionType().value = transaction.transactionType;
+    if(transaction.description) {
+        form.description().value = transaction.description;
+    }
+}
 
 function saveTransaction() {
     showLoading();
     const transaction = createTransaction();
+    if(isNewTransaction()) {
+        save(transaction);
+    }else {
+        update(transaction);
+    }
+}
+
+function save(transaction) {
+    
     firebase.firestore()
         .collection("Transactions")
         .add(transaction)
@@ -13,6 +74,21 @@ function saveTransaction() {
             hideLoading();
             alert("Erro ao salvar transação: " + error.message);
         });
+}
+
+function update(transaction) {
+    showLoading();
+    firebase.firestore()
+    .collection("Transactions")
+    .doc(getTransactionUid())
+    .update(transaction)
+    .then(() => {
+        hideLoading();
+        window.location.href = "/pages/home/home.html";
+    }).catch((error) => {
+        hideLoading();
+        alert("Erro ao atualizar transação: " + error.message);
+    });
 }
 
 function createTransaction() {
@@ -77,6 +153,7 @@ function isFormValid() {
 
 const form = {
     typeExpense: () => document.getElementById("expense"),
+    typeIncome: () => document.getElementById("income"),
 
     currency: () => document.getElementById("currency"),
     value: () => document.getElementById("value"),

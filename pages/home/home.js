@@ -25,9 +25,11 @@ function findTransactions(user) {
     .orderBy("date", "desc")
     .get()
     .then(snapshot => {
-        const transactions = snapshot.docs.map(doc => doc.data());
+        const transactions = snapshot.docs.map(doc => ({
+            ...doc.data(),
+            uid: doc.id
+        }));
         addTransactionToScreen(transactions);
-        //console.log("transactions: ", transactions);
         hideLoading();
     })
     .catch(error => {
@@ -45,7 +47,11 @@ function addTransactionToScreen(transactions) {
         li.classList.add(transaction.type);
         //console.log("transaction.type: ", transaction.type);
         orderedList.appendChild(li);
-
+        li.addEventListener("click", () => {
+            window.location.href = `../transactions/transactions.html?uid=`
+             + transaction.uid;
+        });
+    
         const date = document.createElement(`p`);
         date.innerHTML = formatDate(transaction.date.replace(/-/g, '\/'));
         //console.log("dentro de transaction date: ", transaction.date);
