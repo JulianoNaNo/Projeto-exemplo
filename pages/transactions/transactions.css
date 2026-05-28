@@ -1,0 +1,19 @@
+
+.transaction-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: 20px auto;
+}
+.inputField{
+    margin-bottom: 15px;
+    width: 100%;
+}
+.error{
+    margin-bottom: 0.1rem;
+    margin-top: 0.2rem;
+}

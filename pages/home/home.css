@@ -1,33 +1,5 @@
-body {
-    background: linear-gradient(135deg, #1e1e2f 0%, #11111d 100%);
-    min-height: 100vh;
-    color: #ffffff;
-}
-
-header {
-    display: flex;             /* 💡 Faltava ativar o flexbox no header */
-    justify-content: flex-end; /* ✨ Alinha o conteúdo totalmente à direita */
-    padding: 1rem;             /* Um espacinho para o botão não colar na borda da tela */
-}
 
 /* Removi o 'header button' antigo que estava forçando 50% de largura */
-
-.btn-logout {
-    /* width: 100%; ❌ Removido para o botão não esticar na tela toda */
-    padding: 0.6rem 1.5rem; /* Ajustado o preenchimento para ficar proporcional */
-    border: none;
-    border-radius: 6px;
-    background-color: #6c5ce7;
-    color: #ffffff;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
-}
-
-.btn-logout:hover {
-    background-color: #5b4bc4; /* Efeito de hover básico que faltava */
-}
 
 ol{
     color: black;
