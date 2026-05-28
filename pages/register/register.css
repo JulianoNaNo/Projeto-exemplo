@@ -25,19 +25,17 @@ body {
     font-size: 0.9rem;
     margin-bottom: 2rem;
 }
-
-/* Link ou botão de voltar para a tela de login se o usuário desistir */
-.back-link {
-    display: block;
-    text-align: center;
-    margin-top: 1.5rem;
-    color: #a29bfe;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.2s;
+.button-container{
+    padding-top: 1.5rem;
 }
 
 .back-link:hover {
     color: #6c5ce7;
     text-decoration: underline;
+}
+
+.btn-secondary:hover {
+    background-color: #6c5ce7;
+    color: white;
+    transition: color 0.2s;
 }

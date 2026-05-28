@@ -27,6 +27,7 @@ function findTransactions(user) {
     .then(snapshot => {
         const transactions = snapshot.docs.map(doc => doc.data());
         addTransactionToScreen(transactions);
+        //console.log("transactions: ", transactions);
         hideLoading();
     })
     .catch(error => {
@@ -42,15 +43,17 @@ function addTransactionToScreen(transactions) {
     transactions.forEach(transaction => {
         const li = document.createElement(`li`);
         li.classList.add(transaction.type);
+        //console.log("transaction.type: ", transaction.type);
         orderedList.appendChild(li);
 
         const date = document.createElement(`p`);
-        date.innerHTML = formatDate(transaction.date);
+        date.innerHTML = formatDate(transaction.date.replace(/-/g, '\/'));
+        //console.log("dentro de transaction date: ", transaction.date);
         li.appendChild(date);
 
         const money = document.createElement(`p`);
         money.innerHTML = formatMoney(transaction.money);
-        console.log("dentro de transaction money: ", transaction.money);
+        //console.log("dentro de transaction money: ", transaction.money, transaction.value);
         li.appendChild(money);
 
         const type = document.createElement(`p`);

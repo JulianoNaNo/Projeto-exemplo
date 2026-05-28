@@ -45,19 +45,7 @@ body {
 }
 
 /* Botão secundário de "Registrar" abaixo do botão Entrar */
-.btn-secondary {
-    width: 100%;
-    padding: 0.85rem;
-    border: 1px solid #6c5ce7;
-    border-radius: 6px;
-    background: transparent;
-    color: #6c5ce7;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 1rem;
-    transition: background-color 0.2s, color 0.2s;
-}
+
 
 .btn-secondary:hover {
     background-color: #6c5ce7;
