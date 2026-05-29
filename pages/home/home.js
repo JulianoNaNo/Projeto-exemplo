@@ -45,13 +45,23 @@ function addTransactionToScreen(transactions) {
     transactions.forEach(transaction => {
         const li = document.createElement(`li`);
         li.classList.add(transaction.type);
+        li.id = transaction.uid;
         //console.log("transaction.type: ", transaction.type);
         orderedList.appendChild(li);
         li.addEventListener("click", () => {
             window.location.href = `../transactions/transactions.html?uid=`
              + transaction.uid;
         });
-    
+
+        const deleteButton = document.createElement("button");
+        deleteButton.innerText = "Remover";
+        deleteButton.classList.add("outline", "danger");
+        deleteButton.addEventListener("click", event => {
+            event.stopPropagation(); // Impede que o clique no botão dispare o evento do li
+            askRemoveTransaction(transaction);
+        });
+        li.appendChild(deleteButton);
+
         const date = document.createElement(`p`);
         date.innerHTML = formatDate(transaction.date.replace(/-/g, '\/'));
         //console.log("dentro de transaction date: ", transaction.date);
@@ -74,6 +84,36 @@ function addTransactionToScreen(transactions) {
     });
     hideLoading();
 }
+
+function askRemoveTransaction(transaction) {
+    const shoudRemove = confirm("Tem certeza que deseja remover esta transação?");
+    if(shoudRemove) {
+        
+        removeTransaction(transaction);
+    }
+}
+
+function removeTransaction(transaction) {
+    showLoading();
+    firebase.firestore()
+    .collection("Transactions")
+    .doc(transaction.uid)
+    .delete()
+    .then(
+        () => {
+        alert("Transação removida com sucesso!");
+        hideLoading(); // Remove a transação da tela
+        document.getElementById(transaction.uid).remove();
+    })
+    .catch(error => {
+        hideLoading();
+        console.log("Erro ao remover transação");
+        alert("Erro ao remover transação");
+    })
+}
+
+
+
 
 function formatDate(date) {
     return new Date(date).toLocaleDateString("pt-BR");

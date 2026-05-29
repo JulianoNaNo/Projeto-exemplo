@@ -30,3 +30,15 @@ ol li:hover{
 p{
     margin: 4px 0;
 }
+
+ol li:hover button.danger{
+    display: block;
+    
+}
+
+button.danger {
+    width: auto;
+    float: right;
+    cursor: pointer;
+    display: none;
+}

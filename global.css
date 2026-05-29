@@ -37,13 +37,15 @@ button[disabled] {
     opacity: 0.8;
     pointer-events: none;
 }
-
+*/
 .outline {
     background: aliceblue;
     color: rgb(0, 0, 0);
-    border: 2px solid black;
-    border-color: transparent;
+    padding: 3px;
+    border-radius: 5px;
+    border: 2px solid red;
 }
+/*
 
 .outline:active {
     opacity: 0.7;
