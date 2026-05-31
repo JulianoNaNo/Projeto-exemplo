@@ -15,14 +15,12 @@ function isNewTransaction() {
 
 function findTransactionByUid(uid) {
     showLoading();
-    firebase.firestore()
-    .collection("Transactions")
-    .doc(uid)
-    .get()
-    .then((doc) => {
+    transactionService.findByUid(uid)
+    .then((transaction) => {
         hideLoading();
-        if (doc.exists) {
-            fillTransactionScreen(doc.data());
+        if (transaction) {
+            console.log("id da transação: ", transaction);
+            fillTransactionScreen(transaction);
             toggleSaveButtonDisabled();
         } else {
             alert("Transação não encontrada.");
@@ -62,32 +60,29 @@ function saveTransaction() {
 }
 
 function save(transaction) {
-    
-    firebase.firestore()
-        .collection("Transactions")
-        .add(transaction)
-        .then(() => {
-            hideLoading();
-            alert("Transação salva com sucesso!");
-            window.location.href = "/pages/home/home.html";
-        }).catch((error) => {
-            hideLoading();
-            alert("Erro ao salvar transação: " + error.message);
-        });
+    transactionService.save(transaction)
+    .then(() => {
+        hideLoading();
+        alert("Transação salva com sucesso!", );
+        window.location.href = "/pages/home/home.html";
+    }).catch((error) => {
+        hideLoading();
+        alert("Erro ao salvar transação: " + error.message);
+    });
 }
 
 function update(transaction) {
     showLoading();
-    firebase.firestore()
-    .collection("Transactions")
-    .doc(getTransactionUid())
-    .update(transaction)
+    transaction.uid = getTransactionUid();
+    alert("transaction.uid: " + transaction.uid);
+    transactionService.update(transaction)
     .then(() => {
         hideLoading();
         window.location.href = "/pages/home/home.html";
     }).catch((error) => {
         hideLoading();
-        alert("Erro ao atualizar transação: " + error.message);
+        console.log("transaction: ", transaction);
+        alert("Erro ao atualizar transação: " + error.messagem);
     });
 }
 
